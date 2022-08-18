@@ -1,0 +1,12 @@
+.select-box {
+  width: 640px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.title-box {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
