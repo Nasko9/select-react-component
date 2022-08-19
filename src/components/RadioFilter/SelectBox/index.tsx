@@ -11,9 +11,9 @@ import { ISelectBox } from "../../../types/RadioType";
 // Style
 import "./index.css";
 
-export default function SelectBox({ data, radioGroup, title }: ISelectBox) {
+export default function SelectBox({ options, radioGroup, title }: ISelectBox) {
   //ovde ide use radio btn hook i tu se prosleđuje ta funkcija
-  const { onChangeHandler } = useSelectBox(radioGroup);
+  const { onChangeHandler, radioValue } = useSelectBox(radioGroup);
 
   return (
     <div className="select-box">
@@ -21,9 +21,10 @@ export default function SelectBox({ data, radioGroup, title }: ISelectBox) {
       {/* Todo prima niz opcija (data) i to je posebna komponenta i prima on
       selected (trigeriuje se kada se klikne na njega)*/}
       <BoxBody
-        options={data}
+        options={options}
         radioGroup={radioGroup}
         onSelected={onChangeHandler}
+        value={radioValue}
       />
     </div>
   );

@@ -1,20 +1,14 @@
-import { useContext } from "react";
-
-// Context
-import RadioContext from "../../../../context/RadioContext";
-
 // Type
 import { IBoxTitle } from "../../../../types/RadioType";
+import useSelectBox from "../useSelectBox";
 
 export default function BoxTitle({ title, radioGroup }: IBoxTitle) {
-  const { radioValue } = useContext(RadioContext);
-
-  // console.log(radioGroup);
+  const { clearRadioValue, radioValue } = useSelectBox(radioGroup);
 
   return (
-    <h1 className="title-box">
+    <h1 className="title-box" onClick={clearRadioValue}>
       {title}
-      {radioValue === "" ? "" : `: ${radioValue}`}
+      {radioValue === {} ? "" : `: ${radioValue[radioGroup]}`}
     </h1>
   );
 }

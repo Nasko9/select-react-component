@@ -1,10 +1,20 @@
 import React, { useContext } from "react";
 
 // Context
-import RadioContext from "../../../context/RadioContext";
+import RadioContext, {
+  IRadioValueContext,
+} from "../../../context/RadioContext";
+
+// interface IUseSelectBox {
+//   product: string;
+//   format: string;
+//   material: string;
+//   color: string;
+// }
 
 export default function useSelectBox(radioGroup: string) {
-  const { radioValue, setRadioValue } = useContext(RadioContext);
+  const { radioValue, setRadioValue } =
+    useContext<IRadioValueContext>(RadioContext);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRadioValue((prevState: object) => {
@@ -12,5 +22,12 @@ export default function useSelectBox(radioGroup: string) {
     });
   };
 
-  return { onChangeHandler, radioValue };
+  //Todo: da ne setuje na prazan string nego da ga stvarno obriše jer je inicijalno prazan objekat
+  const clearRadioValue = () => {
+    setRadioValue((prevState: object) => {
+      return { ...prevState, [radioGroup]: "" };
+    });
+  };
+
+  return { onChangeHandler, radioValue, clearRadioValue };
 }
