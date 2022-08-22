@@ -1,8 +1,15 @@
 // Type
-import { IRadio } from "../../types/RadioType";
+import { ISelectObject } from "../../types/RadioType";
 
 // Style
 import "./index.css";
+
+export interface IRadio {
+  name: string;
+  radioGroup: string;
+  onSelected: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  radioValue: ISelectObject;
+}
 
 export default function RadioBtn({
   name,

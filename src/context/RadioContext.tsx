@@ -1,20 +1,10 @@
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { createContext, useState } from "react";
 
 // Type
-import { IRadioContextProvider } from "../types/RadioType";
+import { IRadioValueContext, ISelectObject } from "../types/RadioType";
 
-//Todo: Ove interfejse prebaciti u RadioType.ts
-interface IUseSelectBox {
-  [key: string]: any;
-  product?: string;
-  format?: string;
-  material?: string;
-  color?: string;
-}
-
-export interface IRadioValueContext {
-  radioValue: IUseSelectBox;
-  setRadioValue: Dispatch<SetStateAction<IUseSelectBox>>;
+export interface IRadioContextProvider {
+  children: JSX.Element;
 }
 
 const initialStateContext = {
@@ -25,7 +15,7 @@ const initialStateContext = {
 const RadioContext = createContext<IRadioValueContext>(initialStateContext);
 
 export const RadioContextProvider = ({ children }: IRadioContextProvider) => {
-  const [radioValue, setRadioValue] = useState<IUseSelectBox>({});
+  const [radioValue, setRadioValue] = useState<ISelectObject>({});
 
   return (
     <RadioContext.Provider value={{ radioValue, setRadioValue }}>

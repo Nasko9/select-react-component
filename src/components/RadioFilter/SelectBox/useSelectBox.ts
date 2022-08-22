@@ -1,16 +1,10 @@
 import React, { useContext } from "react";
 
 // Context
-import RadioContext, {
-  IRadioValueContext,
-} from "../../../context/RadioContext";
+import RadioContext from "../../../context/RadioContext";
 
-// interface IUseSelectBox {
-//   product: string;
-//   format: string;
-//   material: string;
-//   color: string;
-// }
+// Type
+import { IRadioValueContext } from "../../../types/RadioType";
 
 export default function useSelectBox(radioGroup: string) {
   const { radioValue, setRadioValue } =
@@ -22,11 +16,19 @@ export default function useSelectBox(radioGroup: string) {
     });
   };
 
-  //Todo: da ne setuje na prazan string nego da ga stvarno obriše jer je inicijalno prazan objekat
   const clearRadioValue = () => {
-    setRadioValue((prevState: object) => {
-      return { ...prevState, [radioGroup]: "" };
+    setRadioValue((prevState) => {
+      //Todo: ifovi kada se prvo briše briše se sve itd
+      const { [radioGroup]: _sd, ...rest } = prevState;
+      return rest;
     });
+  };
+
+  //Za svaki slucaj ako ti ne radi proveri state (Ne vezuj za state toliko zbog animacije)
+  const boxBodyClass = () => {
+    if (radioValue === {}) {
+      return "body-hide";
+    }
   };
 
   return { onChangeHandler, radioValue, clearRadioValue };
