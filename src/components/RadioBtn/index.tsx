@@ -23,6 +23,7 @@ export default function RadioBtn({
         type="radio"
         id={name}
         value={name}
+        name={radioGroup}
         onChange={onSelected}
         checked={radioValue[radioGroup] === name}
       />

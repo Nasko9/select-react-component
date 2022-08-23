@@ -7,27 +7,47 @@ import RadioContext from "../../../context/RadioContext";
 import { IRadioValueContext } from "../../../types/RadioType";
 
 export default function useSelectBox(radioGroup: string) {
-  const { radioValue, setRadioValue } =
+  const { radioValue, setRadioValue, setStep } =
     useContext<IRadioValueContext>(RadioContext);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRadioValue((prevState: object) => {
       return { ...prevState, [radioGroup]: e.target.value };
     });
+
+    setStep((prev: number) => ++prev);
   };
+  //Todo: select box treba da se disejbluje da ne moze da se klikne
 
   const clearRadioValue = () => {
-    setRadioValue((prevState) => {
-      //Todo: ifovi kada se prvo briše briše se sve itd
-      const { [radioGroup]: _sd, ...rest } = prevState;
-      return rest;
-    });
-  };
-
-  //Za svaki slucaj ako ti ne radi proveri state (Ne vezuj za state toliko zbog animacije)
-  const boxBodyClass = () => {
-    if (radioValue === {}) {
-      return "body-hide";
+    switch (radioGroup) {
+      case "product":
+        setRadioValue({});
+        setStep(0);
+        break;
+      case "format":
+        setRadioValue((prevState) => {
+          const { format, material, color, ...rest } = prevState;
+          return rest;
+        });
+        setStep(1);
+        break;
+      case "material":
+        setRadioValue((prevState) => {
+          const { material, color, ...rest } = prevState;
+          return rest;
+        });
+        setStep(2);
+        break;
+      case "color":
+        setRadioValue((prevState) => {
+          const { color, ...rest } = prevState;
+          return rest;
+        });
+        setStep(3);
+        break;
+      default:
+        break;
     }
   };
 

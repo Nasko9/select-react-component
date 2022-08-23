@@ -12,6 +12,8 @@ export interface IBoxBody {
   radioGroup: string;
   onSelected: (e: React.ChangeEvent<HTMLInputElement>) => void;
   radioValue: ISelectObject;
+  id: number;
+  step: number;
 }
 
 export default function BoxBody({
@@ -19,10 +21,13 @@ export default function BoxBody({
   radioGroup,
   onSelected,
   radioValue,
+  id,
+  step,
 }: IBoxBody) {
   // inicijalno poluresenje: radioValue[radioGroup] ? "body-hide" : `body-box`
+
   return (
-    <div className={radioValue[radioGroup] ? "body-hide" : `body-box`}>
+    <div className={id === step ? "body-box" : "body-hide"}>
       {options.map(({ name }) => (
         <RadioBtn
           key={name}

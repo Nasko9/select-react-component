@@ -10,15 +10,18 @@ export interface IRadioContextProvider {
 const initialStateContext = {
   radioValue: {},
   setRadioValue: () => {},
+  step: 0,
+  setStep: () => {},
 };
 
 const RadioContext = createContext<IRadioValueContext>(initialStateContext);
 
 export const RadioContextProvider = ({ children }: IRadioContextProvider) => {
   const [radioValue, setRadioValue] = useState<ISelectObject>({});
+  const [step, setStep] = useState(0);
 
   return (
-    <RadioContext.Provider value={{ radioValue, setRadioValue }}>
+    <RadioContext.Provider value={{ radioValue, setRadioValue, step, setStep }}>
       {children}
     </RadioContext.Provider>
   );

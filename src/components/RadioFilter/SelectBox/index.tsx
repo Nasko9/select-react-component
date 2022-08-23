@@ -15,9 +15,17 @@ export interface ISelectBox {
   options: Array<IRadioElement>;
   radioGroup: string;
   title: string;
+  id: number;
+  step: number;
 }
 
-export default function SelectBox({ options, radioGroup, title }: ISelectBox) {
+export default function SelectBox({
+  options,
+  radioGroup,
+  title,
+  id,
+  step,
+}: ISelectBox) {
   const { onChangeHandler, radioValue } = useSelectBox(radioGroup);
 
   return (
@@ -28,6 +36,8 @@ export default function SelectBox({ options, radioGroup, title }: ISelectBox) {
         radioGroup={radioGroup}
         onSelected={onChangeHandler}
         radioValue={radioValue}
+        id={id}
+        step={step}
       />
     </div>
   );
