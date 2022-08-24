@@ -17,34 +17,41 @@ export default function useSelectBox(radioGroup: string) {
 
     setStep((prev: number) => ++prev);
   };
-  //Todo: select box treba da se disejbluje da ne moze da se klikne
 
   const clearRadioValue = () => {
     switch (radioGroup) {
       case "product":
-        setRadioValue({});
-        setStep(0);
+        if (radioValue.product) {
+          setRadioValue({});
+          setStep(0);
+        }
         break;
       case "format":
-        setRadioValue((prevState) => {
-          const { format, material, color, ...rest } = prevState;
-          return rest;
-        });
-        setStep(1);
+        if (radioValue.format) {
+          setRadioValue((prevState) => {
+            const { format, material, color, ...rest } = prevState;
+            return rest;
+          });
+          setStep(1);
+        }
         break;
       case "material":
-        setRadioValue((prevState) => {
-          const { material, color, ...rest } = prevState;
-          return rest;
-        });
-        setStep(2);
+        if (radioValue.material) {
+          setRadioValue((prevState) => {
+            const { material, color, ...rest } = prevState;
+            return rest;
+          });
+          setStep(2);
+        }
         break;
       case "color":
-        setRadioValue((prevState) => {
-          const { color, ...rest } = prevState;
-          return rest;
-        });
-        setStep(3);
+        if (radioValue.color) {
+          setRadioValue((prevState) => {
+            const { color, ...rest } = prevState;
+            return rest;
+          });
+          setStep(3);
+        }
         break;
       default:
         break;

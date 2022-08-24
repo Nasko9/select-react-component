@@ -12,5 +12,5 @@ export interface IRadioValueContext {
   radioValue: ISelectObject;
   setRadioValue: Dispatch<SetStateAction<ISelectObject>>;
   step: number;
-  setStep: Dispatch<SetStateAction<any>>;
+  setStep: Dispatch<SetStateAction<number>>;
 }

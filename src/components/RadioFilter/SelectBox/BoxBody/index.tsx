@@ -24,8 +24,6 @@ export default function BoxBody({
   id,
   step,
 }: IBoxBody) {
-  // inicijalno poluresenje: radioValue[radioGroup] ? "body-hide" : `body-box`
-
   return (
     <div className={id === step ? "body-box" : "body-hide"}>
       {options.map(({ name }) => (

@@ -10,6 +10,7 @@ import { IRadioElement } from "../../../types/RadioType";
 
 // Style
 import "./index.css";
+import { useEffect, useRef, useState } from "react";
 
 export interface ISelectBox {
   options: Array<IRadioElement>;
@@ -28,17 +29,29 @@ export default function SelectBox({
 }: ISelectBox) {
   const { onChangeHandler, radioValue } = useSelectBox(radioGroup);
 
+  const heightRef = useRef<any>(null);
+  const [height, setHeight] = useState<number | undefined>(0);
+  useEffect(() => {
+    setTimeout(() => {
+      // heightRef?.current.classList.add("animate-text");
+      setHeight(() => heightRef?.current.clientHeight);
+    }, 200);
+  }, [heightRef]);
+
+  console.log(height);
   return (
     <div className="select-box">
-      <BoxTitle title={title} radioGroup={radioGroup} />
-      <BoxBody
-        options={options}
-        radioGroup={radioGroup}
-        onSelected={onChangeHandler}
-        radioValue={radioValue}
-        id={id}
-        step={step}
-      />
+      <div ref={heightRef}>
+        <BoxTitle title={title} radioGroup={radioGroup} />
+        <BoxBody
+          options={options}
+          radioGroup={radioGroup}
+          onSelected={onChangeHandler}
+          radioValue={radioValue}
+          id={id}
+          step={step}
+        />
+      </div>
     </div>
   );
 }

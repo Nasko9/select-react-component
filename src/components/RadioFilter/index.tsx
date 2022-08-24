@@ -14,6 +14,7 @@ import "./index.css";
 
 export default function RadioFilter() {
   const { step } = useContext<IRadioValueContext>(RadioContext);
+
   return (
     <div className="filter-section">
       <SelectBox

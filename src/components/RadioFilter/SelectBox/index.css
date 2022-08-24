@@ -1,9 +1,7 @@
 .select-box {
   width: 640px;
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
 }
 
 .title-box {
