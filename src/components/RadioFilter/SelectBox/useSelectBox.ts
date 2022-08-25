@@ -15,7 +15,9 @@ export default function useSelectBox(radioGroup: string) {
       return { ...prevState, [radioGroup]: e.target.value };
     });
 
-    setStep((prev: number) => ++prev);
+    setTimeout(() => {
+      setStep((prev: number) => ++prev);
+    }, 200);
   };
 
   const clearRadioValue = () => {

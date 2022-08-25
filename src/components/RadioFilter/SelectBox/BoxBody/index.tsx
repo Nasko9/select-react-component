@@ -24,17 +24,24 @@ export default function BoxBody({
   id,
   step,
 }: IBoxBody) {
+  const height = options.length * 30;
+  // console.log(height);
   return (
-    <div className={id === step ? "body-box" : "body-hide"}>
-      {options.map(({ name }) => (
-        <RadioBtn
-          key={name}
-          name={name}
-          radioGroup={radioGroup}
-          onSelected={onSelected}
-          radioValue={radioValue}
-        />
-      ))}
+    <div
+      className="body-animation"
+      style={id === step ? { height: height } : { height: 0 }}
+    >
+      <div className="body-box">
+        {options.map(({ name }) => (
+          <RadioBtn
+            key={name}
+            name={name}
+            radioGroup={radioGroup}
+            onSelected={onSelected}
+            radioValue={radioValue}
+          />
+        ))}
+      </div>
     </div>
   );
 }

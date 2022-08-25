@@ -1,6 +1,8 @@
 // Hook
 import useSelectBox from "../useSelectBox";
-export interface IBoxTitle {
+
+import "./index.css";
+interface IBoxTitle {
   title: string;
   radioGroup: string;
 }
@@ -8,12 +10,12 @@ export interface IBoxTitle {
 export default function BoxTitle({ title, radioGroup }: IBoxTitle) {
   const { clearRadioValue, radioValue } = useSelectBox(radioGroup);
 
-  // console.log(radioValue);
-
   return (
     <h1 className="title-box" onClick={clearRadioValue}>
       {title}
-      {radioValue[radioGroup] && `: ${radioValue[radioGroup]}`}
+      <span className="title-value">
+        {radioValue[radioGroup] && ` ${radioValue[radioGroup]}`}
+      </span>
     </h1>
   );
 }
