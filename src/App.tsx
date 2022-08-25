@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// Component
+import RadioFilter from "./components/RadioFilter";
+
+// Context
+import { RadioContextProvider } from "./context/RadioContext";
+
+//? Zamislio sam da ovo se bude jedna komponenta.
+//? Pitanje: Kako da napravim da kada mu se prosledi data on zna da li će napraviti 2 grupe ili kao u ovom primeru 4?
+//? Da ne bih morao Select box komponentu ponavljao 4 puta već da je napišem samo jednom i toliko.
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RadioContextProvider>
+        <RadioFilter />
+      </RadioContextProvider>
     </div>
   );
 }
