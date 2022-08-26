@@ -12,10 +12,15 @@ export default function BoxTitle({ title, radioGroup }: IBoxTitle) {
 
   return (
     <h1 className="title-box" onClick={clearRadioValue}>
-      {title}
-      <span className="title-value">
+      {title} &nbsp;
+      <span
+        className="title-animation"
+        style={radioValue[radioGroup] ? { width: "450px" } : { width: "0px" }}
+      >
         {radioValue[radioGroup] && ` ${radioValue[radioGroup]}`}
       </span>
     </h1>
   );
 }
+
+// style={radioValue[radioGroup] ? { width: "100%" } : { width: "10px" }}
