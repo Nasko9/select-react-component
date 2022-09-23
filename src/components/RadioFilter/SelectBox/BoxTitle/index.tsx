@@ -22,5 +22,3 @@ export default function BoxTitle({ title, radioGroup }: IBoxTitle) {
     </h1>
   );
 }
-
-// style={radioValue[radioGroup] ? { width: "100%" } : { width: "10px" }}

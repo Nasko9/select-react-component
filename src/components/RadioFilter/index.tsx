@@ -11,9 +11,11 @@ import { data, data1, data2, data3 } from "../../data/radioData";
 
 // Style
 import "./index.css";
+import { useQueries } from "react-query";
 
 export default function RadioFilter() {
   const { step } = useContext<IRadioValueContext>(RadioContext);
+  // const {data} = useQueries
 
   return (
     <div className="filter-section">
