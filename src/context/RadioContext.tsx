@@ -20,6 +20,8 @@ export const RadioContextProvider = ({ children }: IRadioContextProvider) => {
   const [radioValue, setRadioValue] = useState<ISelectObject>({});
   const [step, setStep] = useState(0);
 
+  console.log(radioValue);
+
   return (
     <RadioContext.Provider value={{ radioValue, setRadioValue, step, setStep }}>
       {children}

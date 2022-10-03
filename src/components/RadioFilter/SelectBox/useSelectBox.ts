@@ -22,16 +22,16 @@ export default function useSelectBox(radioGroup: string) {
 
   const clearRadioValue = () => {
     switch (radioGroup) {
-      case "product":
-        if (radioValue.product) {
+      case "format":
+        if (radioValue.format) {
           setRadioValue({});
           setStep(0);
         }
         break;
-      case "format":
-        if (radioValue.format) {
+      case "pages":
+        if (radioValue.pages) {
           setRadioValue((prevState) => {
-            const { format, material, color, ...rest } = prevState;
+            const { pages, material, weight, color, ...rest } = prevState;
             return rest;
           });
           setStep(1);
@@ -40,10 +40,19 @@ export default function useSelectBox(radioGroup: string) {
       case "material":
         if (radioValue.material) {
           setRadioValue((prevState) => {
-            const { material, color, ...rest } = prevState;
+            const { material, weight, color, ...rest } = prevState;
             return rest;
           });
           setStep(2);
+        }
+        break;
+      case "weight":
+        if (radioValue.weight) {
+          setRadioValue((prevState) => {
+            const { weight, color, ...rest } = prevState;
+            return rest;
+          });
+          setStep(3);
         }
         break;
       case "color":
@@ -52,7 +61,7 @@ export default function useSelectBox(radioGroup: string) {
             const { color, ...rest } = prevState;
             return rest;
           });
-          setStep(3);
+          setStep(4);
         }
         break;
       default:

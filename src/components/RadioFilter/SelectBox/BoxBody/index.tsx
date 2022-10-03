@@ -8,7 +8,7 @@ import { IRadioElement, ISelectObject } from "../../../../types/RadioType";
 import "./index.css";
 
 export interface IBoxBody {
-  options: Array<IRadioElement>;
+  options: Array<string | number>;
   radioGroup: string;
   onSelected: (e: React.ChangeEvent<HTMLInputElement>) => void;
   radioValue: ISelectObject;
@@ -32,10 +32,10 @@ export default function BoxBody({
       style={id === step ? { height: height } : { height: 0 }}
     >
       <div className="body-box">
-        {options.map(({ name }) => (
+        {options.map((option) => (
           <RadioBtn
-            key={name}
-            name={name}
+            key={option}
+            name={`${option}`}
             radioGroup={radioGroup}
             onSelected={onSelected}
             radioValue={radioValue}

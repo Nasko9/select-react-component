@@ -7,44 +7,58 @@ import { IRadioValueContext } from "../../types/RadioType";
 import RadioContext from "../../context/RadioContext";
 
 // Data
-import { data, data1, data2, data3 } from "../../data/radioData";
+import {
+  formatData,
+  pagesData,
+  materialData,
+  weightData,
+  colorData,
+} from "../../data/radioData";
 
 // Style
 import "./index.css";
-import { useQueries } from "react-query";
+import useRadioFilter from "./useRadioFilter";
 
 export default function RadioFilter() {
   const { step } = useContext<IRadioValueContext>(RadioContext);
-  // const {data} = useQueries
+  const { product } = useRadioFilter();
+  // console.log(product);
 
   return (
     <div className="filter-section">
       <SelectBox
-        options={data}
-        radioGroup="product"
-        title="Product"
+        options={formatData}
+        radioGroup="format"
+        title="Format"
         id={0}
         step={step}
       />
       <SelectBox
-        options={data1}
-        radioGroup="format"
-        title="Format"
+        options={pagesData}
+        radioGroup="pages"
+        title="Pages"
         id={1}
         step={step}
       />
       <SelectBox
-        options={data2}
+        options={materialData}
         radioGroup="material"
         title="Material"
         id={2}
         step={step}
       />
       <SelectBox
-        options={data3}
+        options={weightData}
+        radioGroup="weight"
+        title="Weight"
+        id={3}
+        step={step}
+      />
+      <SelectBox
+        options={colorData}
         radioGroup="color"
         title="Color & refinement"
-        id={3}
+        id={4}
         step={step}
       />
     </div>

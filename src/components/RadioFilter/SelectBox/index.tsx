@@ -6,13 +6,13 @@ import BoxTitle from "./BoxTitle";
 import useSelectBox from "./useSelectBox";
 
 // Type
-import { IRadioElement } from "../../../types/RadioType";
+// import { IRadioElement } from "../../../types/RadioType";
 
 // Style
 import "./index.css";
 
 export interface ISelectBox {
-  options: Array<IRadioElement>;
+  options: Array<string | number>;
   radioGroup: string;
   title: string;
   id: number;
