@@ -8,7 +8,16 @@ import RadioFilter from "./components/RadioFilter";
 import { RadioContextProvider } from "./context/RadioContext";
 
 // ReactQuery Provider
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      retry: false,
+    },
+  },
+});
 
 function App() {
   return (

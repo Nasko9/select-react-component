@@ -1,9 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+// import { useContext } from "react";
+import { useQuery } from "react-query";
 
 // Api
 import axios from "../../api/axiosInstance";
-import RadioContext from "../../context/RadioContext";
-import { IRadioValueContext } from "../../types/RadioType";
+// import RadioContext from "../../context/RadioContext";
+// import { IRadioValueContext } from "../../types/RadioType";
 
 // Type
 interface IProduct {
@@ -18,19 +19,25 @@ interface IProduct {
 }
 
 export default function useRadioFilter() {
-  const { radioValue } = useContext<IRadioValueContext>(RadioContext);
-  const [product, setProduct] = useState<IProduct[]>([]);
+  // const { radioValue } = useContext<IRadioValueContext>(RadioContext);
 
-  useEffect(() => {
-    (async function () {
-      try {
-        const { data: product } = await axios.get("/product", radioValue);
-        setProduct(product.data);
-      } catch (err) {
-        console.log(err);
-      }
-    })();
-  }, []);
+  const { data } = useQuery("product", () => {
+    return axios.get("/product");
+  });
 
-  return { product };
+  const options = (radioGroup: string) => {
+    if (data?.data.data !== undefined) {
+      const optionsArr = data?.data.data.map((singleData: any) => {
+        return singleData[radioGroup];
+      });
+
+      return optionsArr.filter(
+        (item: any, index: any) => optionsArr.indexOf(item) === index
+      );
+    } else {
+      return [];
+    }
+  };
+
+  return { options };
 }
