@@ -14,3 +14,5 @@ export interface IRadioValueContext {
   step: number;
   setStep: Dispatch<SetStateAction<number>>;
 }
+
+// Api object type

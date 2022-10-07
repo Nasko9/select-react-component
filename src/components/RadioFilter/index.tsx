@@ -15,7 +15,7 @@ import "./index.css";
 export default function RadioFilter() {
   const { step } = useContext<IRadioValueContext>(RadioContext);
   const { options } = useRadioFilter();
-  console.log(options("pages"));
+
   return (
     <div className="filter-section">
       <SelectBox

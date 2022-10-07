@@ -1,36 +1,22 @@
-// import { useContext } from "react";
 import { useQuery } from "react-query";
 
 // Api
-import axios from "../../api/axiosInstance";
-// import RadioContext from "../../context/RadioContext";
-// import { IRadioValueContext } from "../../types/RadioType";
+import fetchAllProducts from "../../api/products";
+import { ISelectObject } from "../../types/RadioType";
 
-// Type
-interface IProduct {
-  id: string;
-  product_type_id: number;
-  product_type_name: string;
-  format: string;
-  pages: number;
-  weight: number;
-  material: string;
-  color: string;
-}
+//todo: poseban tip za singledata objekat sa property string
 
 export default function useRadioFilter() {
-  // const { radioValue } = useContext<IRadioValueContext>(RadioContext);
-
-  const { data } = useQuery("product", () => {
-    return axios.get("/product");
-  });
+  const { data } = useQuery("products", fetchAllProducts);
 
   const options = (radioGroup: string) => {
     if (data?.data.data !== undefined) {
-      const optionsArr = data?.data.data.map((singleData: any) => {
+      const optionsArr = data?.data.data.map((singleData: ISelectObject) => {
         return singleData[radioGroup];
       });
 
+      // konvertovati array u set i onda set u array i to je to
+      // todo izmeniti logiku koristi set pa posle to kovnertuj u array
       return optionsArr.filter(
         (item: any, index: any) => optionsArr.indexOf(item) === index
       );
@@ -39,5 +25,5 @@ export default function useRadioFilter() {
     }
   };
 
-  return { options };
+  return { options, data };
 }

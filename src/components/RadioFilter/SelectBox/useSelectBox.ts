@@ -12,7 +12,14 @@ export default function useSelectBox(radioGroup: string) {
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRadioValue((prevState: object) => {
-      return { ...prevState, [radioGroup]: e.target.value };
+      return {
+        ...prevState,
+        [radioGroup]: isNaN(+e.target.value) ? e.target.value : +e.target.value,
+      };
+    });
+
+    setRadioValue((prevState: object) => {
+      return { ...prevState };
     });
 
     setTimeout(() => {
